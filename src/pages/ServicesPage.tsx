@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 import { CheckCircle, ArrowRight, HelpCircle, ChevronDown, ChevronUp } from 'lucide-react';
 
 const ServicesPage: React.FC = () => {
@@ -104,6 +105,13 @@ const ServicesPage: React.FC = () => {
 
   return (
     <div className="py-20">
+      <Helmet>
+        <title>Services | Web&Moi</title>
+        <meta
+          name="description"
+          content="Création de sites vitrines, e-commerce et refontes sur mesure."
+        />
+      </Helmet>
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-blue-50 to-white py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">

@@ -1,8 +1,16 @@
 import React from 'react';
+import { Helmet } from 'react-helmet-async';
 
 const AboutPage: React.FC = () => {
   return (
     <div className="py-20">
+      <Helmet>
+        <title>À propos | Web&Moi</title>
+        <meta
+          name="description"
+          content="Découvrez l'histoire de Web&Moi et son fondateur."
+        />
+      </Helmet>
       {/* À propos */}
       <section className="max-w-4xl mx-auto px-4 mb-16">
         <h1 className="text-4xl font-bold text-gray-900 mb-6">À propos</h1>
