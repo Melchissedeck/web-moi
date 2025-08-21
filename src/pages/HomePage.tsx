@@ -130,9 +130,9 @@ const HomePage: React.FC = () => {
                   Maintenance incluse
                 </li>
               </ul>
-              <div className="text-2xl font-bold text-blue-600 mb-4">
-                À partir de 890€
-              </div>
+              <p className="text-gray-700 font-semibold mb-4">
+                Contactez-moi pour un devis personnalisé
+              </p>
             </div>
 
             <div className="bg-white p-8 rounded-xl shadow-sm hover:shadow-md transition-shadow border-2 border-orange-200">
@@ -157,9 +157,9 @@ const HomePage: React.FC = () => {
                   Formation incluse
                 </li>
               </ul>
-              <div className="text-2xl font-bold text-blue-600 mb-4">
-                À partir de 1 490€
-              </div>
+              <p className="text-gray-700 font-semibold mb-4">
+                Contactez-moi pour un devis personnalisé
+              </p>
             </div>
 
             <div className="bg-white p-8 rounded-xl shadow-sm hover:shadow-md transition-shadow">
@@ -181,9 +181,9 @@ const HomePage: React.FC = () => {
                   Migration sécurisée
                 </li>
               </ul>
-              <div className="text-2xl font-bold text-blue-600 mb-4">
-                À partir de 690€
-              </div>
+              <p className="text-gray-700 font-semibold mb-4">
+                Contactez-moi pour un devis personnalisé
+              </p>
             </div>
           </div>
         </div>
