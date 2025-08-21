@@ -221,27 +221,22 @@ const ServicesPage: React.FC = () => {
               Un processus simple et transparent du premier contact à la livraison
             </p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
               {
                 step: "01",
                 title: "Premier contact",
-                description: "Échange sur vos besoins, vos objectifs et votre budget. Devis personnalisé sous 48h."
+                description: "Échange sur vos besoins, vos objectifs et votre budget. Devis personnalisé sous 48h.",
               },
               {
-                step: "02", 
-                title: "Conception",
-                description: "Création de la maquette et validation avec vous. Aller-retour jusqu'à satisfaction complète."
+                step: "02",
+                title: "Développement",
+                description: "Conception de la maquette puis développement avec des points d'étapes réguliers. Vous suivez l'avancement en temps réel.",
               },
               {
                 step: "03",
-                title: "Développement",
-                description: "Codage de votre site avec des points d'étapes réguliers. Vous suivez l'avancement en temps réel."
-              },
-              {
-                step: "04",
                 title: "Livraison",
-                description: "Mise en ligne, formation à la gestion et accompagnement pour vos premiers pas."
+                description: "Mise en ligne, formation à la gestion et accompagnement pour vos premiers pas.",
               }
             ].map((process, index) => (
               <div key={index} className="text-center">
