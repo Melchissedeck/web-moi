@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Mail, Phone, MapPin, Clock, Send, Calendar, Linkedin, Github, CheckCircle } from 'lucide-react';
 
 const ContactPage: React.FC = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -10,8 +12,10 @@ const ContactPage: React.FC = () => {
     projectType: '',
     budget: '',
     message: '',
-    consent: false
+    consent: false,
+    website: '' // honeypot
   });
+  const [errors, setErrors] = useState<{ [key: string]: string }>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
 
@@ -26,16 +30,35 @@ const ContactPage: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
-    // Simulation d'envoi - en production, connecter à un service comme Formspree
-    await new Promise(resolve => setTimeout(resolve, 2000));
-    
-    setIsSubmitting(false);
-    setIsSubmitted(true);
-    
-    // Reset form
-    setTimeout(() => {
-      setIsSubmitted(false);
+
+    const newErrors: { [key: string]: string } = {};
+    if (!formData.name.trim()) newErrors.name = 'Le nom est requis';
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) newErrors.email = 'Email invalide';
+    if (!formData.message.trim()) newErrors.message = 'Le message est requis';
+    if (!formData.projectType) newErrors.projectType = 'Veuillez sélectionner un type de projet';
+    if (formData.website) newErrors.website = 'Spam détecté';
+
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors);
+      setIsSubmitting(false);
+      return;
+    }
+
+    setErrors({});
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
+
+      if (!response.ok) {
+        throw new Error('Erreur serveur');
+      }
+
+      setIsSubmitted(true);
+      setTimeout(() => navigate('/'), 3000);
       setFormData({
         name: '',
         email: '',
@@ -44,32 +67,37 @@ const ContactPage: React.FC = () => {
         projectType: '',
         budget: '',
         message: '',
-        consent: false
+        consent: false,
+        website: ''
       });
-    }, 3000);
+    } catch {
+      setErrors({ form: 'Une erreur est survenue. Veuillez réessayer.' });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const contactInfo = [
     {
-      icon: <Mail className="h-6 w-6" />,
+      icon: <Mail aria-hidden="true" className="h-6 w-6" />,
       title: "Email",
       content: "contact@webmoi.fr",
       action: "mailto:contact@webmoi.fr"
     },
     {
-      icon: <Phone className="h-6 w-6" />,
+      icon: <Phone aria-hidden="true" className="h-6 w-6" />,
       title: "Téléphone",
       content: "06 12 34 56 78",
       action: "tel:+33612345678"
     },
     {
-      icon: <MapPin className="h-6 w-6" />,
+      icon: <MapPin aria-hidden="true" className="h-6 w-6" />,
       title: "Localisation",
       content: "France • Travail à distance",
       action: null
     },
     {
-      icon: <Clock className="h-6 w-6" />,
+      icon: <Clock aria-hidden="true" className="h-6 w-6" />,
       title: "Disponibilité",
       content: "Lun-Ven 9h-18h",
       action: null
@@ -99,7 +127,7 @@ const ContactPage: React.FC = () => {
       <div className="min-h-screen flex items-center justify-center bg-green-50">
         <div className="text-center p-8">
           <div className="bg-green-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6">
-            <CheckCircle className="h-10 w-10 text-green-600" />
+            <CheckCircle aria-hidden="true" className="h-10 w-10 text-green-600" />
           </div>
           <h2 className="text-3xl font-bold text-gray-900 mb-4">Message envoyé !</h2>
           <p className="text-xl text-gray-600 mb-6">
@@ -137,6 +165,18 @@ const ContactPage: React.FC = () => {
                 Formulaire de contact
               </h2>
               <form onSubmit={handleSubmit} className="space-y-6">
+                <input
+                  type="text"
+                  name="website"
+                  value={formData.website}
+                  onChange={handleChange}
+                  className="hidden"
+                  tabIndex={-1}
+                  autoComplete="off"
+                />
+                {errors.form && (
+                  <p className="text-red-600 text-sm mb-4">{errors.form}</p>
+                )}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
                     <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
@@ -146,12 +186,14 @@ const ContactPage: React.FC = () => {
                       type="text"
                       id="name"
                       name="name"
-                      required
                       value={formData.name}
                       onChange={handleChange}
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
                       placeholder="Votre nom et prénom"
                     />
+                    {errors.name && (
+                      <p className="text-red-600 text-sm mt-1">{errors.name}</p>
+                    )}
                   </div>
                   <div>
                     <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
@@ -161,12 +203,14 @@ const ContactPage: React.FC = () => {
                       type="email"
                       id="email"
                       name="email"
-                      required
                       value={formData.email}
                       onChange={handleChange}
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
                       placeholder="votre@email.com"
                     />
+                    {errors.email && (
+                      <p className="text-red-600 text-sm mt-1">{errors.email}</p>
+                    )}
                   </div>
                 </div>
 
@@ -209,7 +253,6 @@ const ContactPage: React.FC = () => {
                     <select
                       id="projectType"
                       name="projectType"
-                      required
                       value={formData.projectType}
                       onChange={handleChange}
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
@@ -220,6 +263,9 @@ const ContactPage: React.FC = () => {
                         </option>
                       ))}
                     </select>
+                    {errors.projectType && (
+                      <p className="text-red-600 text-sm mt-1">{errors.projectType}</p>
+                    )}
                   </div>
                   <div>
                     <label htmlFor="budget" className="block text-sm font-medium text-gray-700 mb-2">
@@ -248,13 +294,15 @@ const ContactPage: React.FC = () => {
                   <textarea
                     id="message"
                     name="message"
-                    required
                     rows={6}
                     value={formData.message}
                     onChange={handleChange}
                     className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors resize-none"
                     placeholder="Parlez-moi de votre projet, vos objectifs, vos contraintes, vos inspirations..."
                   />
+                  {errors.message && (
+                    <p className="text-red-600 text-sm mt-1">{errors.message}</p>
+                  )}
                 </div>
 
                 <div className="flex items-start">
@@ -282,7 +330,7 @@ const ContactPage: React.FC = () => {
                     <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white"></div>
                   ) : (
                     <>
-                      <Send className="h-5 w-5 mr-2" />
+                      <Send aria-hidden="true" className="h-5 w-5 mr-2" />
                       Envoyer ma demande
                     </>
                   )}
@@ -328,7 +376,7 @@ const ContactPage: React.FC = () => {
 
             {/* RDV Button */}
             <div className="bg-gradient-to-br from-orange-500 to-orange-600 rounded-2xl p-8 text-white">
-              <Calendar className="h-10 w-10 mb-4" />
+              <Calendar aria-hidden="true" className="h-10 w-10 mb-4" />
               <h3 className="text-xl font-bold mb-2">
                 Préférez un appel ?
               </h3>
@@ -341,7 +389,7 @@ const ContactPage: React.FC = () => {
                 rel="noopener noreferrer"
                 className="inline-flex items-center bg-white text-orange-600 px-6 py-3 rounded-lg font-semibold hover:bg-orange-50 transition-colors"
               >
-                <Calendar className="h-5 w-5 mr-2" />
+                <Calendar aria-hidden="true" className="h-5 w-5 mr-2" />
                 Prendre RDV
               </a>
             </div>
@@ -358,7 +406,7 @@ const ContactPage: React.FC = () => {
                   rel="noopener noreferrer"
                   className="bg-blue-100 text-blue-600 p-3 rounded-lg hover:bg-blue-200 transition-colors"
                 >
-                  <Linkedin className="h-6 w-6" />
+                  <Linkedin aria-hidden="true" className="h-6 w-6" />
                 </a>
                 <a
                   href="https://github.com/webmoi"
@@ -366,7 +414,7 @@ const ContactPage: React.FC = () => {
                   rel="noopener noreferrer"
                   className="bg-gray-100 text-gray-600 p-3 rounded-lg hover:bg-gray-200 transition-colors"
                 >
-                  <Github className="h-6 w-6" />
+                  <Github aria-hidden="true" className="h-6 w-6" />
                 </a>
               </div>
               <p className="text-gray-600 text-sm mt-4">
