@@ -9,7 +9,6 @@ const ServicesPage: React.FC = () => {
     {
       title: "Site vitrine",
       subtitle: "Présentez votre activité",
-      price: "À partir de 890€",
       popular: false,
       description: "Site professionnel pour présenter votre activité, vos services et rassurer vos prospects.",
       features: [
@@ -28,7 +27,6 @@ const ServicesPage: React.FC = () => {
     {
       title: "E-commerce",
       subtitle: "Vendez en ligne",
-      price: "À partir de 1 490€",
       popular: true,
       description: "Boutique en ligne complète avec gestion des commandes, paiements sécurisés et suivi des stocks.",
       features: [
@@ -48,7 +46,6 @@ const ServicesPage: React.FC = () => {
     {
       title: "Refonte",
       subtitle: "Modernisez votre site",
-      price: "À partir de 690€",
       popular: false,
       description: "Remise à neuf complète de votre site existant avec amélioration des performances et du design.",
       features: [
@@ -85,7 +82,7 @@ const ServicesPage: React.FC = () => {
     },
     {
       question: "Quels sont les frais récurrents ?",
-      answer: "Les frais d'hébergement et de nom de domaine (environ 100-150€/an). La maintenance est optionnelle mais recommandée (49€/mois) pour les mises à jour de sécurité et le support technique."
+      answer: "Les frais d'hébergement et de nom de domaine. La maintenance est optionnelle pour les mises à jour de sécurité et le support technique."
     },
     {
       question: "Proposez-vous un paiement échelonné ?",
@@ -114,8 +111,8 @@ const ServicesPage: React.FC = () => {
             Mes <span className="text-blue-600">services</span>
           </h1>
           <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
-            Des solutions web adaptées à chaque besoin et chaque budget. 
-            Découvrez l'offre qui correspond à votre projet.
+            Des solutions web adaptées à chaque besoin.
+            Discutons de votre projet pour créer une offre sur mesure.
           </p>
         </div>
       </section>
@@ -137,7 +134,7 @@ const ServicesPage: React.FC = () => {
                 <div className="text-center mb-6">
                   <h3 className="text-2xl font-bold text-gray-900 mb-2">{service.title}</h3>
                   <p className="text-gray-600 mb-4">{service.subtitle}</p>
-                  <div className="text-3xl font-bold text-blue-600 mb-2">{service.price}</div>
+                  <p className="text-gray-700 font-semibold mb-2">Contactez-moi pour un devis personnalisé</p>
                   <p className="text-sm text-gray-500">Livré en {service.duration}</p>
                 </div>
 
