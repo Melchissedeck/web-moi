@@ -66,15 +66,6 @@ const ServicesPage: React.FC = () => {
     }
   ];
 
-  const addons = [
-    { name: "Logo personnalisé", price: "250€" },
-    { name: "Rédaction de contenu (par page)", price: "80€" },
-    { name: "Séance photo produits", price: "300€" },
-    { name: "Formation approfondie (2h)", price: "150€" },
-    { name: "Maintenance mensuelle", price: "49€/mois" },
-    { name: "Référencement avancé", price: "390€" }
-  ];
-
   const faqs = [
     {
       question: "Combien de temps dure un projet ?",
@@ -186,30 +177,6 @@ const ServicesPage: React.FC = () => {
         </div>
       </section>
 
-      {/* Add-ons Section */}
-      <section className="py-20 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">
-              Services complémentaires
-            </h2>
-            <p className="text-xl text-gray-600">
-              Personnalisez votre projet avec ces options supplémentaires
-            </p>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {addons.map((addon, index) => (
-              <div key={index} className="bg-white p-6 rounded-xl shadow-sm border">
-                <div className="flex justify-between items-center">
-                  <h3 className="font-semibold text-gray-900">{addon.name}</h3>
-                  <span className="text-blue-600 font-bold">{addon.price}</span>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* Process Section */}
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -221,27 +188,22 @@ const ServicesPage: React.FC = () => {
               Un processus simple et transparent du premier contact à la livraison
             </p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
               {
                 step: "01",
                 title: "Premier contact",
-                description: "Échange sur vos besoins, vos objectifs et votre budget. Devis personnalisé sous 48h."
+                description: "Échange sur vos besoins, vos objectifs et votre budget. Devis personnalisé sous 48h.",
               },
               {
-                step: "02", 
-                title: "Conception",
-                description: "Création de la maquette et validation avec vous. Aller-retour jusqu'à satisfaction complète."
+                step: "02",
+                title: "Développement",
+                description: "Conception de la maquette puis développement avec des points d'étapes réguliers. Vous suivez l'avancement en temps réel.",
               },
               {
                 step: "03",
-                title: "Développement",
-                description: "Codage de votre site avec des points d'étapes réguliers. Vous suivez l'avancement en temps réel."
-              },
-              {
-                step: "04",
                 title: "Livraison",
-                description: "Mise en ligne, formation à la gestion et accompagnement pour vos premiers pas."
+                description: "Mise en ligne, formation à la gestion et accompagnement pour vos premiers pas.",
               }
             ].map((process, index) => (
               <div key={index} className="text-center">
