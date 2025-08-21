@@ -4,22 +4,22 @@ import { Code, Heart, Users, Lightbulb, Award, Coffee } from 'lucide-react';
 const AboutPage: React.FC = () => {
   const values = [
     {
-      icon: <Heart className="h-8 w-8 text-red-500" />,
+      icon: <Heart aria-hidden="true" className="h-8 w-8 text-red-500" />,
       title: "Approche humaine",
       description: "Chaque projet est unique, comme chaque entrepreneur. Je prends le temps de comprendre vos besoins et votre vision."
     },
     {
-      icon: <Lightbulb className="h-8 w-8 text-yellow-500" />,
+      icon: <Lightbulb aria-hidden="true" className="h-8 w-8 text-yellow-500" />,
       title: "Pédagogie",
       description: "Je vous accompagne et vous forme pour que vous soyez autonome dans la gestion de votre site web."
     },
     {
-      icon: <Users className="h-8 w-8 text-blue-500" />,
+      icon: <Users aria-hidden="true" className="h-8 w-8 text-blue-500" />,
       title: "Partenariat",
       description: "Plus qu'un prestataire, je deviens votre partenaire digital sur le long terme."
     },
     {
-      icon: <Award className="h-8 w-8 text-green-500" />,
+      icon: <Award aria-hidden="true" className="h-8 w-8 text-green-500" />,
       title: "Qualité",
       description: "Code propre, performances optimisées, sécurité renforcée : je ne transige pas sur la qualité."
     }
@@ -63,14 +63,14 @@ const AboutPage: React.FC = () => {
                 pour entrepreneurs et indépendants depuis plus de 5 ans.
               </p>
               <div className="flex items-center space-x-4 text-gray-600">
-                <Coffee className="h-5 w-5" />
+                <Coffee aria-hidden="true" className="h-5 w-5" />
                 <span>Basé en France • Travail à distance</span>
               </div>
             </div>
             <div className="relative">
               <div className="bg-gradient-to-br from-blue-400 to-blue-600 rounded-2xl p-8 text-white">
                 <div className="bg-white/20 rounded-xl p-6 backdrop-blur-sm">
-                  <Code className="h-12 w-12 mb-4" />
+                  <Code aria-hidden="true" className="h-12 w-12 mb-4" />
                   <h3 className="text-xl font-semibold mb-2">Ma mission</h3>
                   <p className="text-blue-100">
                     Démocratiser le web en rendant la technologie accessible à tous les entrepreneurs, 

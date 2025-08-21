@@ -1,24 +1,21 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { ArrowRight, Users, Code, Zap, CheckCircle, Star } from 'lucide-react';
 
-interface HomePageProps {
-  onNavigate: (page: string) => void;
-}
-
-const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
+const HomePage: React.FC = () => {
   const features = [
     {
-      icon: <Users className="h-8 w-8 text-blue-500" />,
+      icon: <Users aria-hidden="true" className="h-8 w-8 text-blue-500" />,
       title: "Approche humaine",
       description: "Un accompagnement personnalisé tout au long de votre projet"
     },
     {
-      icon: <Code className="h-8 w-8 text-blue-500" />,
+      icon: <Code aria-hidden="true" className="h-8 w-8 text-blue-500" />,
       title: "Solutions sur mesure",
       description: "Des sites web adaptés à vos besoins et à votre activité"
     },
     {
-      icon: <Zap className="h-8 w-8 text-blue-500" />,
+      icon: <Zap aria-hidden="true" className="h-8 w-8 text-blue-500" />,
       title: "Performance optimisée",
       description: "Sites rapides, sécurisés et optimisés pour le référencement"
     }
@@ -54,19 +51,19 @@ const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
               humaine et des solutions techniques adaptées à votre activité.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button
-                onClick={() => onNavigate('services')}
+              <Link
+                to="/services"
                 className="inline-flex items-center px-8 py-4 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-colors group"
               >
                 Voir mes services
-                <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-              </button>
-              <button
-                onClick={() => onNavigate('contact')}
+                <ArrowRight aria-hidden="true" className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+              </Link>
+              <Link
+                to="/contact"
                 className="inline-flex items-center px-8 py-4 border-2 border-blue-600 text-blue-600 font-semibold rounded-lg hover:bg-blue-600 hover:text-white transition-colors"
               >
                 Me contacter
-              </button>
+              </Link>
             </div>
           </div>
         </div>
@@ -121,15 +118,15 @@ const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
               </p>
               <ul className="space-y-2 mb-6">
                 <li className="flex items-center text-gray-600">
-                  <CheckCircle className="h-4 w-4 text-green-500 mr-2" />
+                  <CheckCircle aria-hidden="true" className="h-4 w-4 text-green-500 mr-2" />
                   Design responsive
                 </li>
                 <li className="flex items-center text-gray-600">
-                  <CheckCircle className="h-4 w-4 text-green-500 mr-2" />
+                  <CheckCircle aria-hidden="true" className="h-4 w-4 text-green-500 mr-2" />
                   SEO optimisé
                 </li>
                 <li className="flex items-center text-gray-600">
-                  <CheckCircle className="h-4 w-4 text-green-500 mr-2" />
+                  <CheckCircle aria-hidden="true" className="h-4 w-4 text-green-500 mr-2" />
                   Maintenance incluse
                 </li>
               </ul>
@@ -148,15 +145,15 @@ const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
               </p>
               <ul className="space-y-2 mb-6">
                 <li className="flex items-center text-gray-600">
-                  <CheckCircle className="h-4 w-4 text-green-500 mr-2" />
+                  <CheckCircle aria-hidden="true" className="h-4 w-4 text-green-500 mr-2" />
                   Paiement sécurisé
                 </li>
                 <li className="flex items-center text-gray-600">
-                  <CheckCircle className="h-4 w-4 text-green-500 mr-2" />
+                  <CheckCircle aria-hidden="true" className="h-4 w-4 text-green-500 mr-2" />
                   Gestion des stocks
                 </li>
                 <li className="flex items-center text-gray-600">
-                  <CheckCircle className="h-4 w-4 text-green-500 mr-2" />
+                  <CheckCircle aria-hidden="true" className="h-4 w-4 text-green-500 mr-2" />
                   Formation incluse
                 </li>
               </ul>
@@ -172,15 +169,15 @@ const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
               </p>
               <ul className="space-y-2 mb-6">
                 <li className="flex items-center text-gray-600">
-                  <CheckCircle className="h-4 w-4 text-green-500 mr-2" />
+                  <CheckCircle aria-hidden="true" className="h-4 w-4 text-green-500 mr-2" />
                   Audit complet
                 </li>
                 <li className="flex items-center text-gray-600">
-                  <CheckCircle className="h-4 w-4 text-green-500 mr-2" />
+                  <CheckCircle aria-hidden="true" className="h-4 w-4 text-green-500 mr-2" />
                   Nouveau design
                 </li>
                 <li className="flex items-center text-gray-600">
-                  <CheckCircle className="h-4 w-4 text-green-500 mr-2" />
+                  <CheckCircle aria-hidden="true" className="h-4 w-4 text-green-500 mr-2" />
                   Migration sécurisée
                 </li>
               </ul>
@@ -208,7 +205,7 @@ const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
               <div key={index} className="bg-gray-50 p-8 rounded-xl">
                 <div className="flex mb-4">
                   {[...Array(testimonial.rating)].map((_, i) => (
-                    <Star key={i} className="h-5 w-5 text-yellow-400 fill-current" />
+                    <Star aria-hidden="true" key={i} className="h-5 w-5 text-yellow-400 fill-current" />
                   ))}
                 </div>
                 <p className="text-gray-700 mb-6 italic">
@@ -234,13 +231,13 @@ const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
             Discutons de vos besoins et créons ensemble le site web qui fera 
             décoller votre activité.
           </p>
-          <button
-            onClick={() => onNavigate('contact')}
+          <Link
+            to="/contact"
             className="inline-flex items-center px-8 py-4 bg-orange-500 text-white font-semibold rounded-lg hover:bg-orange-600 transition-colors group"
           >
             Obtenir un devis gratuit
-            <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-          </button>
+            <ArrowRight aria-hidden="true" className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+          </Link>
         </div>
       </section>
     </div>

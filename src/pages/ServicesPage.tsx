@@ -1,11 +1,8 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { CheckCircle, ArrowRight, HelpCircle, ChevronDown, ChevronUp } from 'lucide-react';
 
-interface ServicesPageProps {
-  onNavigate: (page: string) => void;
-}
-
-const ServicesPage: React.FC<ServicesPageProps> = ({ onNavigate }) => {
+const ServicesPage: React.FC = () => {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
 
   const services = [
@@ -160,7 +157,7 @@ const ServicesPage: React.FC<ServicesPageProps> = ({ onNavigate }) => {
                   <ul className="space-y-2">
                     {service.features.map((feature, featureIndex) => (
                       <li key={featureIndex} className="flex items-start text-sm">
-                        <CheckCircle className="h-4 w-4 text-green-500 mt-0.5 mr-2 flex-shrink-0" />
+                        <CheckCircle aria-hidden="true" className="h-4 w-4 text-green-500 mt-0.5 mr-2 flex-shrink-0" />
                         <span className="text-gray-600">{feature}</span>
                       </li>
                     ))}
@@ -172,8 +169,8 @@ const ServicesPage: React.FC<ServicesPageProps> = ({ onNavigate }) => {
                   <p className="text-sm text-gray-600">{service.ideal}</p>
                 </div>
 
-                <button
-                  onClick={() => onNavigate('contact')}
+                <Link
+                  to="/contact"
                   className={`w-full py-3 px-6 rounded-lg font-semibold transition-colors flex items-center justify-center ${
                     service.popular
                       ? 'bg-orange-500 text-white hover:bg-orange-600'
@@ -181,8 +178,8 @@ const ServicesPage: React.FC<ServicesPageProps> = ({ onNavigate }) => {
                   }`}
                 >
                   Demander un devis
-                  <ArrowRight className="ml-2 h-4 w-4" />
-                </button>
+                  <ArrowRight aria-hidden="true" className="ml-2 h-4 w-4" />
+                </Link>
               </div>
             ))}
           </div>
@@ -263,7 +260,7 @@ const ServicesPage: React.FC<ServicesPageProps> = ({ onNavigate }) => {
       <section className="py-20 bg-gray-50">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <HelpCircle className="h-12 w-12 text-blue-500 mx-auto mb-4" />
+            <HelpCircle aria-hidden="true" className="h-12 w-12 text-blue-500 mx-auto mb-4" />
             <h2 className="text-3xl font-bold text-gray-900 mb-4">
               Questions fréquentes
             </h2>
@@ -280,9 +277,9 @@ const ServicesPage: React.FC<ServicesPageProps> = ({ onNavigate }) => {
                 >
                   <span className="font-semibold text-gray-900">{faq.question}</span>
                   {openFaq === index ? (
-                    <ChevronUp className="h-5 w-5 text-gray-500" />
+                    <ChevronUp aria-hidden="true" className="h-5 w-5 text-gray-500" />
                   ) : (
-                    <ChevronDown className="h-5 w-5 text-gray-500" />
+                    <ChevronDown aria-hidden="true" className="h-5 w-5 text-gray-500" />
                   )}
                 </button>
                 {openFaq === index && (
@@ -306,13 +303,13 @@ const ServicesPage: React.FC<ServicesPageProps> = ({ onNavigate }) => {
             N'hésitez pas à me contacter pour discuter de votre projet. 
             Devis gratuit et sans engagement.
           </p>
-          <button
-            onClick={() => onNavigate('contact')}
+          <Link
+            to="/contact"
             className="inline-flex items-center px-8 py-4 bg-orange-500 text-white font-semibold rounded-lg hover:bg-orange-600 transition-colors group"
           >
             Obtenir un devis gratuit
-            <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-          </button>
+            <ArrowRight aria-hidden="true" className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+          </Link>
         </div>
       </section>
     </div>

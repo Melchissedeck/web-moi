@@ -12,7 +12,7 @@ const Footer: React.FC = () => {
           <div className="md:col-span-2">
             <div className="flex items-center space-x-2 mb-4">
               <div className="bg-blue-500 p-2 rounded-lg">
-                <Code className="h-6 w-6 text-white" />
+                <Code aria-hidden="true" className="h-6 w-6 text-white" />
               </div>
               <span className="text-xl font-bold text-white">Web&Moi</span>
             </div>
@@ -27,7 +27,7 @@ const Footer: React.FC = () => {
                 rel="noopener noreferrer"
                 className="text-gray-400 hover:text-blue-400 transition-colors"
               >
-                <Linkedin className="h-5 w-5" />
+                <Linkedin aria-hidden="true" className="h-5 w-5" />
               </a>
               <a
                 href="https://github.com/webmoi"
@@ -35,7 +35,7 @@ const Footer: React.FC = () => {
                 rel="noopener noreferrer"
                 className="text-gray-400 hover:text-blue-400 transition-colors"
               >
-                <Github className="h-5 w-5" />
+                <Github aria-hidden="true" className="h-5 w-5" />
               </a>
             </div>
           </div>
@@ -56,15 +56,15 @@ const Footer: React.FC = () => {
             <h3 className="text-white font-semibold mb-4">Contact</h3>
             <ul className="space-y-2">
               <li className="flex items-center space-x-2">
-                <Mail className="h-4 w-4" />
+                <Mail aria-hidden="true" className="h-4 w-4" />
                 <span className="text-gray-400">contact@webmoi.fr</span>
               </li>
               <li className="flex items-center space-x-2">
-                <Phone className="h-4 w-4" />
+                <Phone aria-hidden="true" className="h-4 w-4" />
                 <span className="text-gray-400">06 12 34 56 78</span>
               </li>
               <li className="flex items-center space-x-2">
-                <MapPin className="h-4 w-4" />
+                <MapPin aria-hidden="true" className="h-4 w-4" />
                 <span className="text-gray-400">France</span>
               </li>
             </ul>

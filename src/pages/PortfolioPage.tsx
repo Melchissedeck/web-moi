@@ -164,7 +164,7 @@ const PortfolioPage: React.FC = () => {
       <section className="py-8 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-center">
-            <Filter className="h-5 w-5 text-gray-400 mr-3" />
+            <Filter aria-hidden="true" className="h-5 w-5 text-gray-400 mr-3" />
             <div className="flex flex-wrap gap-2">
               {categories.map((category) => (
                 <button
@@ -195,6 +195,9 @@ const PortfolioPage: React.FC = () => {
                   <img
                     src={project.image}
                     alt={project.title}
+                    loading="lazy"
+                    width={800}
+                    height={600}
                     className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
                   />
                 </div>
@@ -213,17 +216,21 @@ const PortfolioPage: React.FC = () => {
                     <div className="flex space-x-2 ml-4">
                       <a
                         href={project.liveUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
                         className="p-2 bg-blue-100 text-blue-600 rounded-lg hover:bg-blue-200 transition-colors"
                         title="Voir le site"
                       >
-                        <ExternalLink className="h-4 w-4" />
+                        <ExternalLink aria-hidden="true" className="h-4 w-4" />
                       </a>
                       <a
                         href={project.githubUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
                         className="p-2 bg-gray-100 text-gray-600 rounded-lg hover:bg-gray-200 transition-colors"
                         title="Voir le code"
                       >
-                        <Github className="h-4 w-4" />
+                        <Github aria-hidden="true" className="h-4 w-4" />
                       </a>
                     </div>
                   </div>
@@ -260,7 +267,7 @@ const PortfolioPage: React.FC = () => {
                   <div className="bg-gray-50 p-6 rounded-xl">
                     <div className="flex mb-2">
                       {[...Array(project.testimonial.rating)].map((_, i) => (
-                        <Star key={i} className="h-4 w-4 text-yellow-400 fill-current" />
+                        <Star aria-hidden="true" key={i} className="h-4 w-4 text-yellow-400 fill-current" />
                       ))}
                     </div>
                     <p className="text-gray-700 italic mb-4">
