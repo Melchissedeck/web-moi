@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { ExternalLink, Github, Star, Filter } from 'lucide-react';
+import { Helmet } from 'react-helmet-async';
 
 const PortfolioPage: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState('all');
@@ -129,6 +130,13 @@ const PortfolioPage: React.FC = () => {
 
   return (
     <div className="py-20">
+      <Helmet>
+        <title>Portfolio | Web&Moi</title>
+        <meta
+          name="description"
+          content="Réalisations de Web&Moi pour entrepreneurs et indépendants."
+        />
+      </Helmet>
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-blue-50 to-white py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
